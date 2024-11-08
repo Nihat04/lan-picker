@@ -1,0 +1,15 @@
+.match-section {
+    margin-top: 40px;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-players {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 10px;
+}

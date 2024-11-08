@@ -1,0 +1,43 @@
+/* match mini */
+
+.match-mini {
+    display: flex;
+    padding: 20px;
+    width: 250px;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.match-mini--right {
+    text-align: end;
+    justify-content: flex-end;
+}
+
+.match-mini:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.player__img {
+    border-radius: 100%;
+    border: 1px solid #333;
+}
+
+.player__img--right {
+    order: 4;
+}
+
+.player__name {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.player__real-name {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    font-weight: lighter;
+}
