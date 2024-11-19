@@ -3,14 +3,14 @@ import styles from "../styles/index.module.css";
 import React from "react";
 import Image from "next/image";
 
-import { player } from "../model";
+import { Player } from "../model";
 import classNames from "classnames";
 
 export const MatchMini = ({
     player,
     rightSide = false,
 }: {
-    player: player;
+    player: Player;
     rightSide?: boolean;
 }) => {
     return (

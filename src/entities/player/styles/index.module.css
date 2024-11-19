@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: flex-start;
     background: rgba(0, 0, 0, 0.4);
-    border: 1px solid #333;
+    border: 1px solid var(--outline);
     border-radius: 10px;
     cursor: pointer;
     gap: 10px;
@@ -24,7 +24,7 @@
 
 .player__img {
     border-radius: 100%;
-    border: 1px solid #333;
+    border: 1px solid var(--outline);
 }
 
 .player__img--right {

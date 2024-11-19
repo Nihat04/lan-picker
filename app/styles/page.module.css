@@ -1,0 +1,20 @@
+.matches__item {
+    padding: 20px 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--outline);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.matches__item:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.match__name {
+    margin-bottom: 10px;
+}
+
+.match__date {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}

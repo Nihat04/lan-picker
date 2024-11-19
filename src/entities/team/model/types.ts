@@ -1,9 +1,9 @@
 import { ObjectId } from "mongodb";
-import { player } from "../../player";
+import { Player } from "../../player";
 
-export type team = {
+export type Team = {
     id?: ObjectId;
     name: string;
-    captain: player;
-    players: player[];
+    captain: Player;
+    players: [Player, Player, Player, Player, Player];
 };

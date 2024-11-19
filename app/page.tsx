@@ -1,54 +1,36 @@
-import classNames from "classnames";
-import styles from "./page.module.css";
+import Link from "next/link";
+import styles from "./styles/page.module.css";
 
-import { MatchMini } from "@/src/entities/player";
-import { getPlayers } from "@/src/features/mongoDB";
-import CreateMatchBtn from "@/src/shared/ui/CreateMatchBtn/CreateMatchBtn";
+import { getMatches } from "@/src/features/mongoDB";
 
 export default async function Home() {
-    const players = await getPlayers();
+    const matches = await getMatches();
+    console.log(matches);
 
     return (
         <>
             <main>
-                <section className={styles["match-section"]}>
-                    <div className={styles["match"]}>
-                        <div
-                            className={classNames(
-                                styles["left-team"],
-                                styles["team"]
-                            )}
-                        >
-                            <ul className={styles["team-players"]}>
-                                {players.map((player, index) => (
-                                    <li key={index}>
-                                        <MatchMini player={player} />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className={styles["match__info"]}></div>
-                        <div
-                            className={classNames(
-                                styles["right-team"],
-                                styles["team"]
-                            )}
-                        >
-                            <ul className={styles["team-players"]}>
-                                {players.map((player, index) => (
-                                    <li key={index}>
-                                        <MatchMini
-                                            player={player}
-                                            rightSide={true}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                <section className={styles["matches"]}>
+                    <ul className={styles["matches__list"]}>
+                        {matches.map((match) => (
+                            <li
+                                className={styles["matches__item"]}
+                                key={match._id?.toString()}
+                            >
+                                <Link href={`/match/${match._id}`}>
+                                    <p className={styles['match__name']}>
+                                        <b>{match.team1.name}</b> vs{" "}
+                                        <b>{match.team2.name}</b>
+                                    </p>
+                                    <p className={styles["match__date"]}>
+                                        {match.date.toLocaleString("ru-RU")}
+                                    </p>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             </main>
-            <CreateMatchBtn players={players} />
         </>
     );
 }

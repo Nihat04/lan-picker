@@ -1,9 +1,10 @@
-import { player } from "@/src/entities/player";
-import { connectToDb } from "..";
+"use server"
 
-export async function getPlayers(): Promise<player[]> {
-    const db = await connectToDb();
-    const collection = db.collection<player>("players");
+import { Player } from "@/src/entities/player";
+import { db } from "./general";
+
+export async function getPlayers(): Promise<Player[]> {
+    const collection = db.collection<Player>("players");
 
     const players = await collection
         .find()
