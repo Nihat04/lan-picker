@@ -2,8 +2,8 @@ import { ObjectId } from "mongodb";
 import { Player } from "../../player";
 
 export type Team = {
-    id?: ObjectId;
-    name: string;
+    _id?: ObjectId;
+    name: string | 'Team A' | 'Team B';
     captain: Player;
-    players: [Player, Player, Player, Player, Player];
+    players: [Player?, Player?, Player?, Player?, Player?];
 };

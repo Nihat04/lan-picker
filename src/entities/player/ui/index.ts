@@ -1,1 +1,1 @@
-export * from "./MatchMini";
+export * from "./TeamPlayer/TeamPlayer";

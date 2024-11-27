@@ -1,6 +1,6 @@
 /* match mini */
 
-.match-mini {
+.team-player {
     display: flex;
     padding: 20px;
     width: 250px;
@@ -13,30 +13,43 @@
     gap: 10px;
 }
 
-.match-mini--right {
+.team-player--right {
     text-align: end;
     justify-content: flex-end;
 }
 
-.match-mini:hover {
+.team-player:hover {
     background: rgba(0, 0, 0, 0.6);
 }
 
-.player__img {
+.cap-icon {
+    width: 20px;
+    aspect-ratio: 1;
+}
+
+.cap-icon--right {
+    order: 5;
+}
+
+.invisible {
+    display: none;
+}
+
+.player-img {
     border-radius: 100%;
     border: 1px solid var(--outline);
 }
 
-.player__img--right {
+.player-img--right {
     order: 4;
 }
 
-.player__name {
+.player-name {
     margin-bottom: 5px;
     font-weight: 600;
 }
 
-.player__real-name {
+.player-real-name {
     color: rgba(255, 255, 255, 0.4);
     font-size: 13px;
     font-weight: lighter;

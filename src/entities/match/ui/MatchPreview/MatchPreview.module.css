@@ -1,0 +1,59 @@
+.match-section {
+    margin-top: 40px;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+}
+
+.team-name {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.player-info {
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.team-captain {
+    margin-bottom: 30px;
+}
+
+.team-players {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 10px;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.player-pick-info {
+    display: flex;
+    align-items: center;
+}
+
+.pick-btn {
+    padding: 10px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--outline);
+    border-radius: 0 5px 5px 0 ;
+}
+
+.pick-btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.pick-btn:active {
+    background: rgba(0, 0, 0, 0.6);
+}

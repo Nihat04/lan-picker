@@ -1,45 +1,48 @@
 import { Match } from "@/src/entities/match/model";
-import { db } from "./general";
+import { connectToDb } from "./general";
 import { ObjectId } from "mongodb";
 
 const collectionName = "matches";
 
-export async function getMatches(): Promise<Match[]> {
+export async function getMatchesWithAggregate(): Promise<Match[]> {
+    'use server'
+
+    const db = await connectToDb()
     const collection = db.collection<Match>(collectionName);
 
     const cursor = await collection.aggregate([
         {
             $lookup: {
                 from: "teams",
-                localField: "team1",
+                localField: "teamA",
                 foreignField: "_id",
-                as: "team1",
+                as: "teamA",
             },
         },
-        { $unwind: "$team1" },
+        { $unwind: "$teamA" },
         {
             $lookup: {
                 from: "teams",
-                localField: "team2",
+                localField: "teamB",
                 foreignField: "_id",
-                as: "team2",
+                as: "teamB",
             },
         },
-        { $unwind: "$team2" },
+        { $unwind: "$teamB" },
         {
             $lookup: {
                 from: "players",
-                localField: "team1.players",
+                localField: "teamA.players",
                 foreignField: "_id",
-                as: "team1.players",
+                as: "teamA.players",
             },
         },
         {
             $lookup: {
                 from: "players",
-                localField: "team2.players",
+                localField: "teamB.players",
                 foreignField: "_id",
-                as: "team2.players",
+                as: "teamB.players",
             },
         },
     ]);
@@ -52,7 +55,26 @@ export async function getMatches(): Promise<Match[]> {
     return matches as Match[];
 }
 
-export async function createMatch(match: Match) {
+export async function getMatches(): Promise<Match[]> {
+    'use server'
+
+    const db = await connectToDb()
+    const collection = db.collection<Match>(collectionName);
+
+    const cursor = await collection.find()
+
+    const matches = await cursor.toArray();
+
+    if (!matches)
+        throw new Error(`failed to get matches`);
+    
+    return matches as Match[];
+}
+
+export async function postMatch(match: Match) {
+    'use server'
+
+    const db = await connectToDb()
     const collection = db.collection<Match>(collectionName);
 
     const res = await collection.insertOne(match);
@@ -60,9 +82,10 @@ export async function createMatch(match: Match) {
     return res;
 }
 
-export async function getMatch(id: ObjectId): Promise<Match> {
+export async function getMatchWithAggregate(id: ObjectId): Promise<Match> {
     "use server"
     
+    const db = await connectToDb()
     const collection = db.collection<Match>(collectionName);
 
     const cursor = await collection.aggregate([
@@ -70,35 +93,35 @@ export async function getMatch(id: ObjectId): Promise<Match> {
         {
             $lookup: {
                 from: "teams",
-                localField: "team1",
+                localField: "teamA",
                 foreignField: "_id",
-                as: "team1",
+                as: "teamA",
             },
         },
-        { $unwind: "$team1" },
+        { $unwind: "$teamA" },
         {
             $lookup: {
                 from: "teams",
-                localField: "team2",
+                localField: "teamB",
                 foreignField: "_id",
-                as: "team2",
+                as: "teamB",
             },
         },
-        { $unwind: "$team2" },
+        { $unwind: "$teamB" },
         {
             $lookup: {
                 from: "players",
-                localField: "team1.players",
+                localField: "teamA.players",
                 foreignField: "_id",
-                as: "team1.players",
+                as: "teamA.players",
             },
         },
         {
             $lookup: {
                 from: "players",
-                localField: "team2.players",
+                localField: "teamB.players",
                 foreignField: "_id",
-                as: "team2.players",
+                as: "teamB.players",
             },
         },
     ]);
@@ -109,4 +132,18 @@ export async function getMatch(id: ObjectId): Promise<Match> {
         throw new Error(`failed to get match with id "${id.toString()}"`);
     
     return match[0] as Match;
+}
+
+export async function getMatch(id: ObjectId): Promise<Match> {
+    "use server"
+    
+    const db = await connectToDb()
+    const collection = db.collection<Match>(collectionName);
+
+    const match = await collection.findOne({_id: id})
+
+    if (!match)
+        throw new Error(`failed to get match with id "${id.toString()}"`);
+    
+    return match;
 }

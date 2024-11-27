@@ -1,6 +1,6 @@
-import { Player } from "../../player";
-import { Team } from "../../team";
-import { ObjectId } from "mongodb";
+import { Team } from '../../team';
+import { Player } from '../../player';
+import { ObjectId } from 'mongodb';
 
 export enum Maps {
     NaN,
@@ -24,13 +24,14 @@ export enum MatchStatus {
 export type Match = {
     _id?: ObjectId;
     date: Date;
-    team1: Team;
-    team2: Team;
+    teamA: Team;
+    teamB: Team;
+    players?: Player[];
     map: Maps;
     status: {
-        action: MatchStatus,
-        side?: 'team1' | 'team2',
-        captain?: ObjectId,
-        additionalData?: Object[],
+        action: MatchStatus;
+        side?: 'teamA' | 'teamB';
+        captain?: ObjectId;
+        additionalData?: object[];
     };
 };

@@ -1,4 +1,4 @@
-.matches__item {
+.matches__list-item {
     padding: 20px 30px;
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid var(--outline);
@@ -6,7 +6,7 @@
     cursor: pointer;
 }
 
-.matches__item:hover {
+.matches__list-item:hover {
     background: rgba(0, 0, 0, 0.4);
 }
 

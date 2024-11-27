@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+.header__profile {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}

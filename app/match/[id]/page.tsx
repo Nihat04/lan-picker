@@ -1,7 +1,7 @@
-import { MatchPreview } from "@/src/entities/match/ui/MatchPreview";
-import { getMatch } from "@/src/features/mongoDB";
-import { ObjectId } from "mongodb";
-import React from "react";
+import { MatchPreview } from '@/src/entities/match/ui/MatchPreview/MatchPreview';
+import { convertObjectIdToString, getMatch } from '@/src/features/mongoDB';
+import { ObjectId } from 'mongodb';
+import React from 'react';
 
 export default async function MatchPage({
     params,
@@ -9,15 +9,13 @@ export default async function MatchPage({
     params: { id: string };
 }) {
     const { id } = await params;
-
     const match = await getMatch(new ObjectId(id));
-    console.log(match);
 
     return (
         <>
             <main>
                 <section>
-                    <MatchPreview match={match} />
+                    <MatchPreview match={convertObjectIdToString(match)} />
                 </section>
             </main>
         </>

@@ -1,6 +1,6 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
-enum PlayerRoles {
+export enum PlayerRole {
     player,
     captain,
     admin,
@@ -8,10 +8,10 @@ enum PlayerRoles {
 }
 
 export type Player = {
-    id?: ObjectId;
+    _id?: ObjectId | string;
     steamId: number;
     name: string;
     realName: string | null;
     avatarUrl: string;
-    role: PlayerRoles;
+    roles: PlayerRole[];
 };
